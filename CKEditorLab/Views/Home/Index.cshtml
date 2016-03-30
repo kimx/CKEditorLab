@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.TextArea("content", new { id = "content", @name = "content" })
+@section scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" language="javascript">
+        var editor = CKEDITOR.replace('content'
+            , {
+                width: '1200px',
+                height:'600px',
+                filebrowserImageUploadUrl: "@Url.Action("Upload")",
+                skin: "bootstrapck",
+            });
+
+        CKEDITOR.on('dialogDefinition', function (e) {
+            if (e.data.name == 'image2') {//預設在上傳的tab
+                var dialog = e.data.definition;
+                oldOnShow = dialog.onShow;
+                dialog.onShow = function () {
+                    oldOnShow.apply(this, arguments);
+                    this.selectPage('Upload');
+                };
+            }
+        });
+    </script>
+}
