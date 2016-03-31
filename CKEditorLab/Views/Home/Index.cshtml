@@ -11,14 +11,14 @@
     <script type="text/javascript" language="javascript">
         var editor = CKEDITOR.replace('content'
             , {
-                width: '1200px',
-                height:'600px',
+                width: '600px',
+                height:'300px',
                 filebrowserImageUploadUrl: "@Url.Action("Upload")",
                 skin: "bootstrapck",
             });
 
         CKEDITOR.on('dialogDefinition', function (e) {
-            if (e.data.name == 'image2') {//預設在上傳的tab
+            if (e.data.name == 'image2') {//預設切換到Upload的tab
                 var dialog = e.data.definition;
                 oldOnShow = dialog.onShow;
                 dialog.onShow = function () {
